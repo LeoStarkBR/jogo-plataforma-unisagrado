@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float movement_speed = 7f;
     public float acceleration = 40f;
     public float speedMargin = 2f;
+    public bool rideMovingPlatforms;
     GameManager game;
     public float gravityScale = 0.85f;
     public float jumpspeed = 7.5f;
@@ -57,12 +58,25 @@ public class PlayerMovement : MonoBehaviour
         return Mathf.Max(movement_speed, scrollSpeed + Mathf.Max(0.5f, speedMargin));
     }
 
+    float GetPlatformSpeed()
+    {
+        if (!rideMovingPlatforms) return 0f;
+        int count = rb.GetContacts(contacts);
+        for (int i = 0; i < count; i++)
+        {
+            if (contacts[i].normal.y <= 0.5f) continue;
+            ActivatedPlatform support = contacts[i].collider.GetComponent<ActivatedPlatform>();
+            if (support != null) return support.TravelVelocity.x;
+        }
+        return 0f;
+    }
+
     void FixedUpdate()
     {
         if (dead) return;
         float effectiveSpeed = GetMovementSpeed();
         float horizontalSpeed = Mathf.MoveTowards(rb.linearVelocity.x,
-            horizontal * effectiveSpeed, Mathf.Max(acceleration, effectiveSpeed * 6f) * Time.fixedDeltaTime);
+            horizontal * effectiveSpeed + GetPlatformSpeed(), Mathf.Max(acceleration, effectiveSpeed * 6f) * Time.fixedDeltaTime);
         rb.linearVelocity = new Vector2(horizontalSpeed, rb.linearVelocity.y);
         if (jumpRequested)
         {

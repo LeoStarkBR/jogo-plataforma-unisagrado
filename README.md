@@ -40,3 +40,6 @@ A cada 250 pontos (distância mais bônus das moedas), o fundo muda com uma mist
 O personagem alterna entre parado (2 quadros), corrida (4 quadros) e poses de subida, topo e descida do salto (3 quadros), virando para a direção do movimento. As moedas giram usando os 4 quadros da sua categoria original. As animações usam os recortes existentes das folhas de sprites, respeitam a pausa e não alteram os colliders. Espinhos e chão são estáticos, pois suas sprites não têm sequência de animação. Ajuste as velocidades nos componentes PlayerSpriteAnimator e SpriteLoopAnimator.
 
 A aceleração do jogador acompanha a velocidade disponível. O espaçamento dos obstáculos também considera a velocidade futura do jogador para reservar um ciclo de pulo e aterrissagem. A transição de fundo respeita a pausa e mantém o deslocamento das duas imagens sincronizado.
+
+## Segunda atividade: plataforma temporizada
+Escolha **Desafio da plataforma** no menu ou abra `Assets/Game/PlatformActivity/Scenes/PlataformaTemporizada.unity`. A plataforma azul só ativa por contato com o jogador, anda por 5 segundos e depois cai sem deslocamento horizontal. Instruções e requisitos detalhados em `Assets/Game/PlatformActivity/README.md`.

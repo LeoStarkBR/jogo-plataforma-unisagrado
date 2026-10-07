@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Scenes/FimDeJogo.unity
     guid: 8594fae7445dc154baf683b1c78eb946
+  - enabled: 1
+    path: Assets/Game/PlatformActivity/Scenes/PlataformaTemporizada.unity
+    guid: d6da9fc1243841bd93d75a011141f833
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
